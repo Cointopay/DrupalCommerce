@@ -1,0 +1,12 @@
+not_enough:
+  category: order_categories
+  label: 'Status Update'
+  template: '<p>IPN: Payment failed notification from Cointopay because notenough money for order.</p>'
+ctp_order_completed:
+  category: order_categories
+  label: 'Order Completed'
+  template: '<p>IPN: Payment got in full for this order to Cointopay.</p>'
+ctp_order_canceled:
+  category: order_categories
+  label: 'Order Canceled'
+  template: '<p>IPN: Payment got canceled by Cointopay.</p>'

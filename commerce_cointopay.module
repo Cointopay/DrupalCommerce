@@ -1,0 +1,29 @@
+<?php
+
+/**
+ * @file
+ * Module file for the Commerce Cointopay module.
+ *
+ * Cointopay Payments Module for Drupal Commerce.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function commerce_cointopay_help($route_name, RouteMatchInterface $route_match) {
+
+  switch ($route_name) {
+    case 'help.page.commerce_cointopay':
+      $variables = [
+        ':supported_coins' => 'https://www.cointopay.com',
+      ];
+
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Cointopay Payments Module for Drupal Commerce, which accepts all cryptocurrencies for payments in your drupal site. <br/> For more information, check all <a href=":supported_coins">supported coins</a>.', $variables) . '</p>';
+
+      return $output;
+  }
+}

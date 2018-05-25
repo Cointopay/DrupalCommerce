@@ -1,0 +1,8 @@
+services:
+  commerce_cointopay.logger:
+    class: Drupal\Core\Logger\LoggerChannel
+    factory: logger.factory:get
+    arguments: ['commerce_cointopay']
+  commerce_cointopay.ipn_cp_handler:
+    class: Drupal\commerce_cointopay\IPNCPHandler
+    arguments: ['@database', '@entity_type.manager', '@commerce_cointopay.logger', '@http_client', '@config.factory']

@@ -1,0 +1,15 @@
+commerce_cointopay.commerce_payment_gateway.plugin.cointopay_redirect:
+  type: commerce_payment_gateway_configuration
+  mapping:
+    merchant_id:
+      type: string
+      label: 'Merchant ID'
+    security_code:
+      type: string
+      label: 'Security Code'
+    ipn_logging:
+      type: string
+      label: 'IPN logging'
+    coin_id:
+      type: string
+      label: 'Coin Id'

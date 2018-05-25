@@ -1,0 +1,7 @@
+commerce_cointopay.processipn:
+  path: '/commerce_cointopay/ipn'
+  defaults:
+    _controller: '\Drupal\commerce_cointopay\Controller\CoinToPayController::processIPN'
+    _title: 'Commerce Cointopay IPN'
+  requirements:
+    _permission: 'access commerce cointopay ipn'
