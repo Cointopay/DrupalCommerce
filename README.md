@@ -1,8 +1,8 @@
-# PrestaShop Plugin for Cointopay
+# Drupal Plugin for Cointopay
 
-Cointopay.com crypto payment plugin for: **PrestaShop**
+Cointopay.com crypto payment plugin for: **Drupal**
 
-**Plugin is compatible with Prestashop 1.7 or greater version**
+**Plugin is compatible with Drupal 8 or greater version**
 
 ## Install
 
@@ -10,7 +10,7 @@ Please sign up for an account at <https://cointopay.com/Signup.jsp> Cointopay.co
 
 Note down the MerchantID, SecurityCode and Currency, information is located in the Account section. These pieces of information are mandatory to be able to connect the payment module to your Drupal.
 
-### Via PrestaShop FTP Uploader
+### Via Drupal FTP Uploader
 
 1) Go to admin dashboard of your page and select extend from top menu, then click on install new model button from extend
 page and upload the cointopay plugin zip file and click install.
