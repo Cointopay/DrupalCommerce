@@ -1,8 +1,8 @@
-# PrestaShop Plugin for Cointopay
+# Drupal Plugin for Cointopay
 
-Cointopay.com crypto payment plugin for: **PrestaShop**
+Cointopay.com crypto payment plugin for: **Drupal**
 
-**Plugin is compatible with Prestashop 1.7 or greater version**
+**Plugin is compatible with Drupal 8 or greater version**
 
 ## Install
 
@@ -10,7 +10,7 @@ Please sign up for an account at <https://cointopay.com/Signup.jsp> Cointopay.co
 
 Note down the MerchantID, SecurityCode and Currency, information is located in the Account section. These pieces of information are mandatory to be able to connect the payment module to your Drupal.
 
-### Via PrestaShop FTP Uploader
+### Via Drupal FTP Uploader
 
 1) Go to admin dashboard of your page and select extend from top menu, then click on install new model button from extend
 page and upload the cointopay plugin zip file and click install.
@@ -39,7 +39,7 @@ cointopay from gateways list and fill out all the form data.
 Please contact support@cointopay.com for feature requests and/or incidents, or create a ticket here: https://cointopay.freshdesk.com/helpdesk
 
 ### About Cointopay.com
-We are an international crypto currency payment processor, meaning that we accept payments from your customers and make the funds available to you (incl. in form of fiat currency like euro). The direct integration with Magento provides you with a seamless payment experience while underlying dealing with diverse and complex blockchain technologies like Bitcoin, Ethereum, Neo, Dash, Ripple and many more. P.S. If you want your own crypto currency to become available in this plugin, we can provide that for you as well, Cointopay has been a technological payment incubator since 2014!
+We are an international crypto currency payment processor, meaning that we accept payments from your customers and make the funds available to you (incl. in form of fiat currency like euro). The direct integration with Magento provides you with a seamless payment experience while underlying dealing with diverse and complex blockchain technologies like Bitcoin, Ethereum, Neo, Dash, Ripple and many more. If you want your own crypto currency to become available in this plugin, we can provide that for you as well, Cointopay has been a technological payment incubator since 2014!
 
 ### FOR DEVELOPERS AND SALES REPS
 PLEASE NOTE OUR AFFILIATE PROGRAM, YOU RECEIVE 0.5% OF ALL YOUR REFERRALS!
