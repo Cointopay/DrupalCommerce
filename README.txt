@@ -12,28 +12,18 @@ Note down the MerchantID, SecurityCode and Currency, information is located in t
 
 ### Via Drupal Module Upload
 
-1) Go to admin dashboard of your page and select extend from top menu, then click on install new model button from extend
+1) Download Cointopay drupal module from github as zip, you can download it as zip from top right 'Clone or download link'.
+2) Go to admin dashboard of your page and select extend from top menu, then click on install new model button from extend
 page and upload the cointopay plugin zip file and click install.
-2) Drupal commerce is the requirement for its installation so in order to install cointopay plugin you need to install
+3) Drupal commerce is the requirement for its installation so in order to install cointopay plugin you need to install
 drupal commerce first.
-3) After uploading cointopay plugin on extend page search for coin to pay and install it.
-4) Select commerce from top menu and go to configuration select order type there and from the list of order types which
+4) After uploading cointopay plugin on extend page search for coin to pay and install it.
+5) Select commerce from top menu and go to configuration select order type there and from the list of order types which
 in most cases may only have default option, select edit and from edit page change workflow to 'Fulfillment, with validation'
 and save the settings.
-5) Go to Home >> Administration >> Commerce >> Configuration and select payment gateways and then new payment gateway, select
+6) Go to Home >> Administration >> Commerce >> Configuration and select payment gateways and then new payment gateway, select
 cointopay from gateways list and fill out all the form data.
-6) Now in checkout there is going to be a new option by name Cointopay, you can checkout through that.
-1) Go to admin dashboard of your page and select extend from top menu, then click on install new model button from extend
-page and upload the cointopay plugin zip file and click install.
-2) Drupal commerce is the requirement for its installation so in order to install cointopay plugin you need to install
-drupal commerce first.
-3) After uploading cointopay plugin on extend page search for coin to pay and install it.
-4) Select commerce from top menu and go to configuration select order type there and from the list of order types which
-in most cases may only have default option, select edit and from edit page change workflow to 'Fulfillment, with validation'
-and save the settings.
-5) Go to Home >> Administration >> Commerce >> Configuration and select payment gateways and then new payment gateway, select
-cointopay from gateways list and fill out all the form data.
-6) Now in checkout there is going to be a new option by name Cointopay, you can checkout through that.
+7) Now in checkout there is going to be a new option by name Cointopay, you can checkout through that.
 
 ### Support or Contact
 Please contact support@cointopay.com for feature requests and/or incidents, or create a ticket here: https://cointopay.freshdesk.com/helpdesk
