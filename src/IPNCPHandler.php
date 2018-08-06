@@ -4,8 +4,10 @@ namespace Drupal\commerce_cointopay;
 
 use Drupal\commerce_order\Entity\Order;
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Config\Schema\ArrayElement;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Site\Settings;
 use GuzzleHttp\ClientInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -69,7 +71,7 @@ class IPNCPHandler implements IPNCPHandlerInterface
         $this->entityTypeManager = $entity_type_manager;
         $this->logger = $logger;
         $this->httpClient = $client;
-        $this->commerceCointopay = $configFactory->get('commerce_payment.commerce_payment_gateway.coin_topay');
+        $this->commerceCointopay = $configFactory->get('commerce_payment.commerce_payment_gateway.cointopay');
     }
 
     /**
@@ -80,7 +82,7 @@ class IPNCPHandler implements IPNCPHandlerInterface
         $response_data = [
             'order_id' => $request->get('CustomerReferenceNr'),
             'transaction_id' => $request->get('TransactionID'),
-            'status' => $request->get('status'),
+            'status' => $request->get('Status'),
             'not_enough' => $request->get('notenough'),
             'confirm_code' => $request->get('ConfirmCode')
         ];
@@ -156,16 +158,14 @@ class IPNCPHandler implements IPNCPHandlerInterface
     }
 
     /**
-     * Check the validation for IPN data.
-     *
-     * @param array $ipn_data
-     *   The IPN request data from cointopay.
-     *
-     * @return string
-     *   The IPN validation URL.
+     * @param $data
+     * @return bool
      */
     protected function commerce_cointopay_is_response_valid($data)
     {
+        $config = \Drupal::config('commerce_cointopay.commerce_payment_gateway.plugin.cointopay_redirect');
+        $config = $config->getStorage()->read('commerce_payment.commerce_payment_gateway.cointopay');
+        $config = $config['configuration'];
 
         if (empty($data['order_id'])) {
             $this->logger->alert('Customer Reference Number received is incorrect.');
@@ -183,7 +183,27 @@ class IPNCPHandler implements IPNCPHandlerInterface
             return FALSE;
         }
 
-        return TRUE;
+        $url = "https://app.cointopay.com/v2REAPI?MerchantID={$config['merchant_id']}&Call=QA&APIKey=_&output=json&TransactionID={$data['transaction_id']}&ConfirmCode={$data['confirm_code']}";
+        $curl = curl_init($url);
+        curl_setopt_array($curl, array(
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_SSL_VERIFYPEER => 0
+        ));
+        $result = curl_exec($curl);
+        $result = json_decode($result, true);
+        $return = true;
+        if(!$result || !is_array($result)) {
+            $this->logger->alert('Deprecated data ! Your data do not match to Cointopay.');
+            throw new BadRequestHttpException('Deprecated data ! Your data do not match to Cointopay.');
+            $return =  false;
+        }else{
+            if($data['status'] != $result['Status']) {
+                $this->logger->alert('Deprecated data ! Your data do not match to Cointopay.');
+                throw new BadRequestHttpException('Deprecated data ! Your data do not match to Cointopay.');
+                $return =  false;
+            }
+        }
+        return $return;
     }
 
 
