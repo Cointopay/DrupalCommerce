@@ -10,6 +10,8 @@ Please sign up for an account at <https://cointopay.com/Signup.jsp> Cointopay.co
 
 Note down the MerchantID, SecurityCode and Currency, information is located in the Account section. These pieces of information are mandatory to be able to connect the payment module to your Drupal.
 
+Please follow the DrupalCommerce Cointopay Plugin install instructions mentioned here: <a href="https://docs.google.com/document/d/1TynQB47rBxZBE6SW7s3wYTZek0eMaLfUsyCgAGwaBxQ/edit?usp=sharing">download DrupalCommerce Cointopay Plugin documentation</a> or direct link: https://docs.google.com/document/d/1TynQB47rBxZBE6SW7s3wYTZek0eMaLfUsyCgAGwaBxQ/edit?usp=sharing
+
 ### Via Drupal Module Upload
 
 1) Download Cointopay drupal module from github as zip, you can download it as zip from top right 'Clone or download link'.

@@ -35,7 +35,7 @@ class CoinToPayForm extends BasePaymentOffsiteForm {
         'output' => 'json',
         'inputCurrency' => $order->getTotalPrice()->getCurrencyCode(),
         'transactionconfirmurl' => Url::fromRoute('commerce_cointopay.processipn', [], ['absolute' => TRUE])->toString(),
-        'transactionfailurl' => Url::fromRoute('commerce_payment.checkout.cancel', ['commerce_order' => $order->id(), 'step' => 'cancel'], ['absolute' => TRUE])->toString(),
+        'transactionfailurl' => Url::fromRoute('commerce_cointopay.processipn', [], ['absolute' => TRUE])->toString(),
 
     ];
     foreach ($url_params as $name => $value) {

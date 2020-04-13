@@ -86,6 +86,50 @@ class IPNCPHandler implements IPNCPHandlerInterface
             'not_enough' => $request->get('notenough'),
             'confirm_code' => $request->get('ConfirmCode')
         ];
+		// Check the post data sent is valid or not.
+		$transactionData = $this->getTransactiondetail($response_data);
+		if($transactionData['status_code'] != 200){
+			echo $transactionData['message'];exit;
+		}
+		else{
+			if($transactionData['data']['Security'] != $request->get('ConfirmCode')){
+				echo 'Data mismatch! ConfirmCode doesn\'t match.';
+				exit;
+			}
+			elseif($transactionData['data']['CustomerReferenceNr'] != $request->get('CustomerReferenceNr')){
+				echo 'Data mismatch! CustomerReferenceNr doesn\'t match.';
+				exit;
+			}
+			elseif($transactionData['data']['TransactionID'] != $request->get('TransactionID')){
+				echo 'Data mismatch! TransactionID doesn\'t match.';
+				exit;
+			}
+			elseif($transactionData['data']['AltCoinID'] != $request->get('AltCoinID')){
+				echo 'Data mismatch! AltCoinID doesn\'t match.';
+				exit;
+			}
+			elseif($transactionData['data']['MerchantID'] != $request->get('MerchantID')){
+				echo 'Data mismatch! MerchantID doesn\'t match.';
+				exit;
+			}
+			elseif($transactionData['data']['coinAddress'] != $request->get('CoinAddressUsed')){
+				echo 'Data mismatch! coinAddress doesn\'t match.';
+				exit;
+			}
+			elseif($transactionData['data']['SecurityCode'] != $request->get('SecurityCode')){
+				echo 'Data mismatch! SecurityCode doesn\'t match.';
+				exit;
+			}
+			elseif($transactionData['data']['inputCurrency'] != $request->get('inputCurrency')){
+				echo 'Data mismatch! inputCurrency doesn\'t match.';
+				exit;
+			}
+			elseif($transactionData['data']['Status'] != $request->get('status')){
+				echo 'Data mismatch! status doesn\'t match. Your order status is '.$transactionData['data']['Status'];
+				die();
+			}
+			
+		}
         // Check the post data sent is valid or not.
         if (!$this->commerce_cointopay_is_response_valid($response_data)) {
             return FALSE;
@@ -204,6 +248,30 @@ class IPNCPHandler implements IPNCPHandlerInterface
             }
         }
         return $return;
+    }
+	protected function getTransactiondetail($data) {
+        $return = true;
+		$config = \Drupal::config('commerce_cointopay.commerce_payment_gateway.plugin.cointopay_redirect');
+        $config = $config->getStorage()->read('commerce_payment.commerce_payment_gateway.cointopay');
+        $config = $config['configuration'];
+
+        if (empty($data['confirm_code'])) {
+            $this->logger->alert('Confirm Coder received is incorrect.');
+            throw new BadRequestHttpException('Confirm Coder received is incorrect.');
+            return FALSE;
+        }
+
+        $merchant_id =  $this->config['cointopay_merchant_id'];
+        $confirm_code = $data['confirm_code'];
+        $url = "https://cointopay.com/v2REAPI?Call=Transactiondetail&MerchantID={$config['merchant_id']}&output=json&ConfirmCode={$data['confirm_code']}&APIKey=a";
+        $curl = curl_init($url);
+        curl_setopt_array($curl, array(
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_SSL_VERIFYPEER => 0
+        ));
+        $result = curl_exec($curl);
+        $results = json_decode($result, true);
+        return $results;
     }
 
 
