@@ -104,23 +104,23 @@ class IPNCPHandler implements IPNCPHandlerInterface
 				echo 'Data mismatch! TransactionID doesn\'t match.';
 				exit;
 			}
-			elseif($transactionData['data']['AltCoinID'] != $request->get('AltCoinID')){
+			elseif($request->get('AltCoinID') != null && $transactionData['data']['AltCoinID'] != $request->get('AltCoinID')){
 				echo 'Data mismatch! AltCoinID doesn\'t match.';
 				exit;
 			}
-			elseif($transactionData['data']['MerchantID'] != $request->get('MerchantID')){
+			elseif($request->get('MerchantID') != null && $transactionData['data']['MerchantID'] != $request->get('MerchantID')){
 				echo 'Data mismatch! MerchantID doesn\'t match.';
 				exit;
 			}
-			elseif($transactionData['data']['coinAddress'] != $request->get('CoinAddressUsed')){
+			elseif($request->get('CoinAddressUsed') != null && $transactionData['data']['coinAddress'] != $request->get('CoinAddressUsed')){
 				echo 'Data mismatch! coinAddress doesn\'t match.';
 				exit;
 			}
-			elseif($transactionData['data']['SecurityCode'] != $request->get('SecurityCode')){
+			elseif($request->get('SecurityCode') != null && $transactionData['data']['SecurityCode'] != $request->get('SecurityCode')){
 				echo 'Data mismatch! SecurityCode doesn\'t match.';
 				exit;
 			}
-			elseif($transactionData['data']['inputCurrency'] != $request->get('inputCurrency')){
+			elseif($request->get('inputCurrency') != null && $transactionData['data']['inputCurrency'] != $request->get('inputCurrency')){
 				echo 'Data mismatch! inputCurrency doesn\'t match.';
 				exit;
 			}
