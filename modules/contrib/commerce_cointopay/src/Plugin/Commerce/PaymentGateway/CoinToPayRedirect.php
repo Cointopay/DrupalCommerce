@@ -200,13 +200,22 @@ class CoinToPayRedirect extends OffsitePaymentGatewayBase
     /**
      * {@inheritdoc}
      */
-    public function onCancel(OrderInterface $order, Request $request)
-    {
-        $status = $request->get('status');
-        drupal_set_message($this->t('Payment @status on @gateway but may resume the checkout process here when you are ready.', [
-            '@status' => $status,
-            '@gateway' => $this->getDisplayLabel(),
-        ]), 'error');
-    }
+    public function onReturn(OrderInterface $order, Request $request) {
+		// Verify the payment with Cointopay here, then set $paid.
+		if (!$paid) {
+		  $this->messenger()->addError($this->t('Your Cointopay payment was not completed. Please try again.'));
+		  throw new EnforcedResponseException(
+			new RedirectResponse(Url::fromRoute('commerce_cart.page')->toString())
+		  );
+		}
+		// Create the payment entity here when paid.
+	  }
+
+	  public function onCancel(OrderInterface $order, Request $request) {
+		$this->messenger()->addStatus($this->t('You cancelled the Cointopay payment.'));
+		throw new EnforcedResponseException(
+		  new RedirectResponse(Url::fromRoute('commerce_cart.page')->toString())
+		);
+	  }
 
 }

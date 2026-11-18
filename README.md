@@ -15,8 +15,7 @@ Please follow the DrupalCommerce Cointopay Plugin install instructions mentioned
 ### Via Drupal Module Upload
 
 1) Download Cointopay drupal module from github as zip, you can download it as zip from top right 'Clone or download link'.
-2) Go to admin dashboard of your page and select extend from top menu, then click on install new model button from extend
-page and upload the cointopay plugin zip file and click install.
+2) Extract downloaded zip. Upload modules directory to the root or web(if exist) directory of your Drupal installation.
 3) Drupal commerce is the requirement for its installation so in order to install cointopay plugin you need to install
 drupal commerce first.
 4) After uploading cointopay plugin on extend page search for cointopay and install it.
